@@ -4,11 +4,11 @@ from secml_malware.attack.blackbox.c_blackbox_header_problem import CBlackBoxHea
 from secml_malware.attack.blackbox.c_blackbox_headerfields_problem import CBlackBoxHeaderFieldsEvasionProblem
 from secml_malware.attack.blackbox.c_gamma_evasion import CGammaEvasionProblem
 from secml_malware.attack.blackbox.c_gamma_sections_evasion import CGammaSectionsEvasionProblem
-from secml_malware.attack.blackbox.c_wrapper_phi import CEmberWrapperPhi, CEnd2EndWrapperPhi, CSorelWrapperPhi
+from secml_malware.attack.blackbox.c_wrapper_phi import CEmberWrapperPhi, CEnd2EndWrapperPhi, CSorelWrapperPhi, CRemoteWrapperPhi
 from secml_malware.attack.whitebox import CHeaderEvasion, CExtendDOSEvasion, \
 	CContentShiftingEvasion, CPaddingEvasion
 from secml_malware.attack.whitebox.c_headerfields_evasion import CHeaderFieldsEvasion
-from secml_malware.models import CClassifierEmber, CClassifierEnd2EndMalware
+from secml_malware.models import CClassifierEmber, CClassifierEnd2EndMalware, CClassifierRemote
 from secml_malware.models.c_classifier_sorel_net import CClassifierSorel
 
 from constants import *
@@ -153,6 +153,8 @@ def create_wrapper_for_global_target():
 		return CEnd2EndWrapperPhi(global_state.target)
 	if type(global_state.target) == CClassifierSorel:
 		return CSorelWrapperPhi(global_state.target)
+	if type(global_state.target) == CClassifierRemote:
+		return CRemoteWrapperPhi(global_state.target)
 	if hasattr(global_state.target, 'load_wrapper'):
 		try:
 			return global_state.target.load_wrapper()

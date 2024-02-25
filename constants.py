@@ -9,6 +9,7 @@ GAMMA_SECTIONS = 'gamma_sections'
 MALCONV = 'malconv'
 EMBER_GBDT = 'ember_gbdt'
 SOREL_NET = 'sorel_dnn'
+REMOTE = 'remote'
 
 ALL_MODELS = [MALCONV, EMBER_GBDT, SOREL_NET]
 ERROR_PROMPT = "(＃＞＜) "
