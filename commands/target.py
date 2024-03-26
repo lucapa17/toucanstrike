@@ -23,7 +23,8 @@ def get_target_parser():
           				'Leave empty if you are targeting virustotal or metadefender')
 	parser.add_argument('--apikey',
 						help='authentication token for your service.'\
-						'Leave empty according to service requested.')
+						'Leave empty according to service requested.'\
+          				'If you have multiple API keys, you can specify them separated by commas. For example: apikey1,apikey2,apikey3')
 	return parser
 
 
@@ -44,7 +45,7 @@ def target(args):
 		return
 
 	if args.target == REMOTE:
-		clf = CClassifierRemote(args.antivirus_url, args.antivirus, args.apikey)
+		clf = CClassifierRemote(args.antivirus_url, args.antivirus, args.apikey.split(","))
 		_set_target(clf)
 		return
 
