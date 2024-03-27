@@ -45,7 +45,7 @@ def target(args):
 		return
 
 	if args.target == REMOTE:
-		clf = CClassifierRemote(args.antivirus_url, args.antivirus, args.apikey.split(","))
+		clf = CClassifierRemote(args.antivirus_url, args.antivirus, args.apikey.split(",") if args.apikey is not None else None)
 		_set_target(clf)
 		return
 
